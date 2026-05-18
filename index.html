@@ -97,7 +97,7 @@
   .nav-brand { display: flex; flex-direction: column; }
   .nav-brand-name {
     font-family: var(--ff-display);
-    font-size: 1.15rem;
+    font-size: clamp(.95rem, 1.3vw, 1.15rem);
     font-weight: 600;
     letter-spacing: .06em;
     color: var(--slate-dk);
@@ -105,18 +105,18 @@
   }
   .nav-brand-tag {
     font-family: var(--ff-body);
-    font-size: .92rem;
+    font-size: clamp(.72rem, 1vw, .92rem);
     letter-spacing: .18em;
     color: var(--terra);
     text-transform: uppercase;
     font-weight: 400;
   }
 
-  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 32px); list-style: none; }
   .nav-links a {
     text-decoration: none;
-    font-size: 1rem;
-    letter-spacing: .12em;
+    font-size: clamp(.78rem, 1.1vw, 1rem);
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
     font-weight: 500;
@@ -127,7 +127,7 @@
   .nav-cta {
     background: var(--terra);
     color: #fff !important;
-    padding: 10px 22px;
+    padding: 10px clamp(12px, 1.5vw, 22px);
     border-radius: 2px;
     letter-spacing: .1em;
     transition: background .2s !important;
@@ -189,7 +189,7 @@
 
   /* ── HERO ── */
   #home {
-    min-height: 100svh;
+    min-height: auto;
     display: flex;
     align-items: center;
     padding-top: var(--nav-h);
@@ -197,35 +197,16 @@
     position: relative;
     overflow: hidden;
   }
-  .hero-bg-dot {
-    position: absolute;
-    bottom: 10%;
-    right: 8%;
-    width: 340px;
-    height: 340px;
-    border-radius: 50%;
-    border: 1px solid var(--slate);
-    opacity: .06;
-  }
-  .hero-bg-dot2 {
-    position: absolute;
-    bottom: 12%;
-    right: 10%;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    border: 1px solid var(--terra);
-    opacity: .08;
-  }
+
 
   .hero-inner {
     max-width: var(--max-w);
     margin: 0 auto;
     padding: clamp(40px, 8vw, 80px) clamp(20px, 5vw, 60px);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     align-items: center;
-    gap: 60px;
+    gap: clamp(32px, 5vw, 60px);
     width: 100%;
   }
 
@@ -320,13 +301,15 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 32px 40px;
+    padding: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 40px);
     border: 1px solid var(--border);
     background: #fff;
     max-width: 100%;
+    box-sizing: border-box;
     position: relative;
   }
   .hero-logo-block::before { display: none; }
+  .hero-logo-block img { max-width: 100%; width: clamp(200px, 25vw, 360px); height: auto; display: block; }
   .hero-logo-block svg { width: 90px; height: auto; }
   .hero-logo-block .logo-name {
     font-family: var(--ff-display);
@@ -786,6 +769,7 @@
     /* Hero */
     .hero-inner { grid-template-columns: 1fr; gap: 40px; }
     .hero-right { align-items: flex-start; }
+    .hero-logo-block img { width: clamp(160px, 50vw, 320px); }
     /* About */
     .about-owner { grid-template-columns: 1fr; gap: 32px; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -795,11 +779,13 @@
     .contact-layout { grid-template-columns: 1fr; gap: 48px; }
   }
 
-  @media (max-width: 768px) {
-    :root { --nav-h: 64px; }
-    /* Nav */
+  @media (max-width: 900px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
+  }
+
+  @media (max-width: 768px) {
+    :root { --nav-h: 64px; }
     /* Hero */
     .hero-badge { display: none; }
     .hero-inner { padding: clamp(32px, 6vw, 64px) clamp(16px, 4vw, 40px); }
@@ -928,8 +914,6 @@
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-bg-dot" aria-hidden="true"></div>
-  <div class="hero-bg-dot2" aria-hidden="true"></div>
 
   <div class="hero-inner">
     <div class="hero-left">
@@ -1141,7 +1125,7 @@
           </div>
           <div>
             <p class="contact-info-label">Phone</p>
-            <p class="contact-info-val"><a href="tel:+1-800-000-0000">Call for a free estimate</a></p>
+            <p class="contact-info-val"><a href="tel:+19707143136">970-714-3136</a></p>
           </div>
         </div>
 
@@ -1185,7 +1169,7 @@
             </div>
             <div class="form-row">
               <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone" placeholder="(720) 000-0000" autocomplete="tel">
+              <input type="tel" id="phone" name="phone" placeholder="(970) 714-3136" autocomplete="tel">
             </div>
           </div>
           <div class="form-row">
